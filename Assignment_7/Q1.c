@@ -6,12 +6,13 @@ Write a C program to implement a hash function on student SAP-ID and categorize 
 
 // Function to calculate the family based on SAP-ID
 int getStudentFamily(long sapId) {
-    // Extract the last three digits
     int lastThree = sapId % 1000;
+    int d1 = lastThree / 100;         
+    int d2 = (lastThree / 10) % 10;   
+    int d3 = lastThree % 10;          
     
-    // Hash function: (Last 3 digits) mod 10
-    // This ensures the result is always between 0 and 9
-    return lastThree % 10;
+    int sum = d1 + d2 + d3;
+    return (sum - 1) % 9 + 1;
 }
 
 int main() {
