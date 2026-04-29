@@ -1,0 +1,36 @@
+/*
+Write a C program to implement a hash function on student SAP-ID and categorize them in to their 10 families based on the last three digits. Example: Student with SAP-ID 5000423 belongs to family 9 and student with SAP-ID 5000425 belongs to family 2 based on last three digits. 
+*/
+
+#include <stdio.h>
+
+// Function to calculate the family based on SAP-ID
+int getStudentFamily(long sapId) {
+    // Extract the last three digits
+    int lastThree = sapId % 1000;
+    
+    // Hash function: (Last 3 digits) mod 10
+    // This ensures the result is always between 0 and 9
+    return lastThree % 10;
+}
+
+int main() {
+    long sapId;
+    int family;
+
+    printf("Enter Student SAP-ID: ");
+    if (scanf("%ld", &sapId) != 1) {
+        printf("Invalid input. Please enter a numeric SAP-ID.\n");
+        return 1;
+    }
+
+    family = getStudentFamily(sapId);
+
+    printf("------------------------------------\n");
+    printf("SAP-ID: %ld\n", sapId);
+    printf("Last three digits: %03ld\n", sapId % 1000);
+    printf("Assigned Family: %d\n", family);
+    printf("------------------------------------\n");
+
+    return 0;
+}
