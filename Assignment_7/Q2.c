@@ -20,7 +20,13 @@ long hashTable[SIZE] = {0}; // 0 indicates an empty slot
 
 // Hash Function from S.No.1
 int hashFunction(long sapId) {
-    return (sapId % 1000) % 10;
+    int lastThree = sapId % 1000;
+    int d1 = lastThree / 100;         
+    int d2 = (lastThree / 10) % 10;   
+    int d3 = lastThree % 10;          
+    
+    int sum = d1 + d2 + d3;
+    return (sum - 1) % 9 + 1;
 }
 
 // INSERT Operation with Collision Exception Handling
